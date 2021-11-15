@@ -1,12 +1,24 @@
-import { React, Component } from 'react'
+import { useState } from "react";
+import ReactDOM from 'react-dom';
 
+export default function MyForm() {
+  const [name, setName] = useState("");
 
-class Login extends Component{
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert('The name you entered was: ${name}')
+  }
 
-	render(){
-		return(
-		  <h2>login page</h2>
-		)
-	}
+  return (
+    <form onSubmit={handleSubmit} action = "/login" method = "POST">
+      <label>Enter your name:
+        <input 
+          type="text" 
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
+      <input type="submit" />
+    </form>
+  )
 }
-export default Login
